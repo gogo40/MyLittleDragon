@@ -104,7 +104,7 @@ void MainWindow::removeItems()
         QTableWidgetSelectionRange& item = list[i];
         int bottom = item.bottomRow();
         int top = item.topRow();
-        QMessageBox::warning(0, "remove", QString::number(bottom) + "->" + QString::number(top));
+
         for (int j = bottom; j >= top; --j) {
             double v = 0;
             bool ok;
