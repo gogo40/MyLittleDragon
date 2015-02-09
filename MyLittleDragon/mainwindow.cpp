@@ -188,7 +188,7 @@ void MainWindow::updateMessage()
 {
     ui_->message->setText(QString(InflationManager::getDate()) + "\n"
                           "Gasto Total = R$ " + QString::number(total_value_) + "\n" +
-                          "Inflação (24 meses) = " + QString::number(year_inflation_) + "%\n" +
+                          "Inflação (12 meses) = " + QString::number(year_inflation_) + "%\n" +
                           "Inflação (mês) = " + QString::number(month_inflation_) + "%\n");
 }
 
