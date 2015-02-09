@@ -36,6 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -86,15 +87,24 @@ void MainWindow::calculateInflation()
     updateMessage();
 }
 
+bool operator<(const QTableWidgetSelectionRange& a, const QTableWidgetSelectionRange& b)
+{
+    if (a.bottomRow() > b.bottomRow()) return false;
+    if (a.bottomRow() < b.bottomRow()) return true;
+    return a.topRow() < b.topRow();
+}
+
 void MainWindow::removeItems()
 {
     QList<QTableWidgetSelectionRange> list = ui_->itemsTable->selectedRanges();
 
+
+    std::sort(list.begin(), list.end());
     for (int i = list.size() - 1; i > -1; --i) {
         QTableWidgetSelectionRange& item = list[i];
         int bottom = item.bottomRow();
         int top = item.topRow();
-
+        QMessageBox::warning(0, "remove", QString::number(bottom) + "->" + QString::number(top));
         for (int j = bottom; j >= top; --j) {
             double v = 0;
             bool ok;
