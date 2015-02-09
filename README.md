@@ -1,4 +1,5 @@
-<a href="http://gogo40.com/"><img src="http://gogo40.com/wp-content/uploads/2015/02/dragon1.png" width="300"></a>
+<center> <a href="http://gogo40.com/"><img src="http://gogo40.com/wp-content/uploads/2015/02/dragon1.png" width="300"></a> </center>
+
 # MyLittleDragon
 A personal inflation calculator. MyLittleDragon uses the IBGE raw data to create a personal inflation index.
 
