@@ -143,8 +143,8 @@
    <slot>openAddItemDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>476</x>
-     <y>453</y>
+     <x>460</x>
+     <y>237</y>
     </hint>
     <hint type="destinationlabel">
      <x>471</x>
@@ -159,8 +159,8 @@
    <slot>removeItems()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>575</x>
-     <y>463</y>
+     <x>711</x>
+     <y>237</y>
     </hint>
     <hint type="destinationlabel">
      <x>188</x>
@@ -170,13 +170,13 @@
   </connection>
   <connection>
    <sender>cityList</sender>
-   <signal>currentTextChanged(QString)</signal>
+   <signal>activated(QString)</signal>
    <receiver>MainWindow</receiver>
    <slot>updateInflation(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>395</x>
-     <y>35</y>
+     <x>254</x>
+     <y>108</y>
     </hint>
     <hint type="destinationlabel">
      <x>547</x>

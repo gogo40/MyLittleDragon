@@ -84,7 +84,7 @@ private:
     ItemDialog add_item_dialog_;
 
     std::map<QString, double> items_;
-    std::map<QString, std::vector<QWidget*> > items_table_;
+    std::map<QString, std::vector<QTableWidgetItem*> > items_table_;
 
     double total_value_;
     double month_inflation_;

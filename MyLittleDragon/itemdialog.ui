@@ -49,12 +49,28 @@
    <slot>addItem()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>210</x>
-     <y>280</y>
+     <x>221</x>
+     <y>275</y>
     </hint>
     <hint type="destinationlabel">
-     <x>78</x>
-     <y>272</y>
+     <x>102</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>itemValue</sender>
+   <signal>editingFinished()</signal>
+   <receiver>ItemDialog</receiver>
+   <slot>addItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>266</y>
     </hint>
    </hints>
   </connection>

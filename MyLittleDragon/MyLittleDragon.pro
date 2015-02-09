@@ -14,7 +14,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    inflation.cpp
+    inflation.cpp \
+    raw_data.c
 
 HEADERS  += mainwindow.h \
     inflation.h

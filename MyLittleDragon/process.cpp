@@ -15,7 +15,7 @@ int main()
     {
         ifstream cities("cities.txt");
 
-        cout << "const char* _g_cities[] = {\n";
+        cout << "static const char* _g_cities[] = {\n";
         while (cities.getline (out, 500, '\t')) {
             cout << "\""<< out <<"\", \n";
         }
@@ -28,7 +28,7 @@ int main()
     {
         ifstream items("items.txt");
 
-        cout << "const char* _g_items[] = {\n";
+        cout << "static const char* _g_items[] = {\n";
         while (!items.eof()) {
             items.getline(out, 500, '\n');
             cout << "\"" << out <<"\", \n";
@@ -42,7 +42,7 @@ int main()
     {
         ifstream year("year.txt");
 
-        cout << "const char* _g_anual[] = {\n";
+        cout << "static const char* _g_anual[] = {\n";
         while (!year.eof()) {
             year.getline(out, 500, '\n');
 
@@ -70,7 +70,7 @@ int main()
     {
         ifstream monthly("monthly.txt");
 
-        cout << "const char* _g_monthly[] = {\n";
+        cout << "static const char* _g_monthly[] = {\n";
         while (!monthly.eof()) {
             monthly.getline(out, 500, '\n');
 
@@ -94,7 +94,7 @@ int main()
     }
 
     cout << "\n";
-    cout << "const char* g_month_year = \"Janeiro/2015\";\n\n";
+    cout << "static const char* g_month_year = \"Janeiro/2015\";\n\n";
 
     return 0;
 }

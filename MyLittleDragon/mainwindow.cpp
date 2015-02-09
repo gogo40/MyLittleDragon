@@ -96,18 +96,16 @@ void MainWindow::removeItems()
         int top = item.topRow();
 
         for (int j = bottom; j >= top; --j) {
-            QLabel* label = static_cast<QLabel*>(ui_->itemsTable-> cellWidget(j, 0));
-            QLabel* value = static_cast<QLabel*>(ui_->itemsTable-> cellWidget(j, 1));
-
             double v = 0;
             bool ok;
-            v = value->text().toDouble(&ok);
+
+            v = ui_->itemsTable->item(j, 1)->text().toDouble(&ok);
 
             if (ok) {
                 total_value_ -= v;
             }
 
-            removeItem(label->text());
+            removeItem(ui_->itemsTable->item(j, 0)->text());
 
             ui_->itemsTable->removeRow(j);
         }
@@ -121,8 +119,9 @@ void MainWindow::addItem(const QString &item, double value)
     total_value_ += value;
 
     if (this->items_.find(item) != this->items_.end()) {
-        QLabel* label = static_cast<QLabel*>(this->items_table_[item][1]);
+        QTableWidgetItem* label = this->items_table_[item][1];
         label->setText(QString::number(value));
+
         total_value_ -= this->items_[item];
         this->items_[item] = value;
 
@@ -135,19 +134,24 @@ void MainWindow::addItem(const QString &item, double value)
 
     ui_->itemsTable->setRowCount(rows + 1);
 
-    std::vector<QWidget*>& items = this->items_table_[item];
+    std::vector<QTableWidgetItem*>& items = this->items_table_[item];
 
     QString city = ui_->cityList->currentText();
 
     items.resize(5);
 
-    ui_->itemsTable->setCellWidget(rows, 0, new QLabel(item));
-    ui_->itemsTable->setCellWidget(rows, 1, new QLabel(QString::number(value)));
-    ui_->itemsTable->setCellWidget(rows, 2, new QLabel(""));
-    ui_->itemsTable->setCellWidget(rows, 3, new QLabel(InflationManager::getInflationMonthly(item, city)));
-    ui_->itemsTable->setCellWidget(rows, 4, new QLabel(InflationManager::getInflationAnual(item, city)));
+    for (int i = 0; i < 5; ++i) {
+        if (!ui_->itemsTable->item(rows, i))
+            ui_->itemsTable->setItem(rows, i, new QTableWidgetItem);
+    }
 
-    for (int i = 0; i < 5; ++i) items[i] = ui_->itemsTable->cellWidget(rows, i);
+    ui_->itemsTable->item(rows, 0)->setText(item);
+    ui_->itemsTable->item(rows, 1)->setText(QString::number(value));
+    ui_->itemsTable->item(rows, 2)->setText("");
+    ui_->itemsTable->item(rows, 3)->setText(InflationManager::getInflationMonthly(item, city));
+    ui_->itemsTable->item(rows, 4)->setText(InflationManager::getInflationAnual(item, city));
+
+    for (int i = 0; i < 5; ++i) items[i] = ui_->itemsTable->item(rows, i);
 
     calculateInflation();
 }
@@ -162,14 +166,14 @@ void MainWindow::updateInflation(const QString &)
 {
     QString city = ui_->cityList->currentText();
 
-    for (std::map<QString, std::vector<QWidget*> >::iterator it = items_table_.begin();
+    for (std::map<QString, std::vector<QTableWidgetItem*> >::iterator it = items_table_.begin();
          it != items_table_.end();
          ++it) {
-        std::vector<QWidget*>& items = it->second;
+        std::vector<QTableWidgetItem*>& items = it->second;
 
-        QLabel* name = static_cast<QLabel*>(items[0]);
-        QLabel* month = static_cast<QLabel*>(items[3]);
-        QLabel* year = static_cast<QLabel*>(items[4]);
+        QTableWidgetItem* name = items[0];
+        QTableWidgetItem* month = items[3];
+        QTableWidgetItem* year = items[4];
 
         month->setText(InflationManager::getInflationMonthly(name->text(), city));
         year->setText(InflationManager::getInflationAnual(name->text(), city));
@@ -183,15 +187,15 @@ void MainWindow::updateWeigths()
     month_inflation_ = 0;
     year_inflation_ = 0;
 
-    for (std::map<QString, std::vector<QWidget*> >::iterator it = items_table_.begin();
+    for (std::map<QString, std::vector<QTableWidgetItem*> >::iterator it = items_table_.begin();
          it != items_table_.end();
          ++it) {
-        std::vector<QWidget*>& items = it->second;
+        std::vector<QTableWidgetItem*>& items = it->second;
 
-        QLabel* value = static_cast<QLabel*>(items[1]);
-        QLabel* weigth = static_cast<QLabel*>(items[2]);
-        QLabel* month = static_cast<QLabel*>(items[3]);
-        QLabel* year = static_cast<QLabel*>(items[4]);
+        QTableWidgetItem* value = items[1];
+        QTableWidgetItem* weigth = items[2];
+        QTableWidgetItem* month = items[3];
+        QTableWidgetItem* year = items[4];
 
         bool ok;
         double v = value->text().toDouble(&ok);
@@ -220,9 +224,9 @@ void MainWindow::updateCities()
 void MainWindow::updateMessage()
 {
     ui_->message->setText(QString(InflationManager::getDate()) + "\n"
-                          "Gasto Total = R$ " + QString::number(total_value_) + "\n" +
-                          "Inflação (12 meses) = " + QString::number(year_inflation_) + "%\n" +
-                          "Inflação (mês) = " + QString::number(month_inflation_) + "%\n");
+                          "Gasto Total = R$ " + QString("%1").arg(total_value_, 2) + "\n" +
+                          "Inflação (12 meses) = " + QString("%1").arg(year_inflation_, 2) + "%\n" +
+                          "Inflação (mês) = " + QString("%1").arg(month_inflation_, 2) + "%\n");
 }
 
 
