@@ -1,4 +1,4 @@
 Main contributors
 =================
 
-* Péricles Lopes Machado <pericles.raskolnikoff@gmail.com>
+* Pericles Lopes Machado <pericles.raskolnikoff@gmail.com>, http://gogo40.com
