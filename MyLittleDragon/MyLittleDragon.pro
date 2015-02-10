@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     raw_data.c
 
 HEADERS  += mainwindow.h \
-    inflation.h
+    inflation.h \
+    version.h
 
 FORMS    += mainwindow.ui \
     itemdialog.ui
@@ -34,3 +35,8 @@ DISTFILES += \
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
+
+windows: RC_FILE = MyLittleDragon.rc
+
+OTHER_FILES += \
+    MyLittleDragon.rc

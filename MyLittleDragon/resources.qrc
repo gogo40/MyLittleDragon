@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/imgs">
         <file>imgs/dragon1.png</file>
+        <file>imgs/dragon_512_512.ico</file>
     </qresource>
 </RCC>
