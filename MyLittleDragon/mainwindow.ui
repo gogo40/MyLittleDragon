@@ -37,6 +37,11 @@
     </item>
     <item row="2" column="0" colspan="3">
      <widget class="QTableWidget" name="itemsTable">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::MultiSelection</enum>
       </property>
@@ -50,16 +55,16 @@
        <number>140</number>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>25</number>
+       <number>80</number>
       </attribute>
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderDefaultSectionSize">
-       <number>25</number>
+       <number>80</number>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
-       <number>25</number>
+       <number>80</number>
       </attribute>
       <column>
        <property name="text">
